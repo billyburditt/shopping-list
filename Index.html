@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Shopping List</title>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <link href="css/reset.css" rel="stylesheet" />
+    <link href="css/mystyle.css" rel="stylesheet" />
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#btnAdd").on("click", function () {
+                var data = $("#txtTodo").val()
+                if (!data == "") {
+                    $("#lstShoppingList").append('<li class="shopping-item"><button class="unchecked"></button>' + data + '<img class="btn delete-item" src="images/delete_small.png" /></li>');
+                    $("#txtTodo").val("");
+                }
+                else {
+                    alert("Please enter a value.")
+                    return;
+                }
+            });
+
+            $(".shopping-list").on("click", "button", function () {
+                if ($(this).hasClass("checked")) {
+                    $(this).addClass("unchecked");
+                    $(this).removeClass("checked");
+                    $(this).closest("li").removeClass("completed");
+                }
+                else {
+                    $(this).addClass("checked");
+                    $(this).removeClass("unchecked");
+                    $(this).closest("li").addClass("completed");
+                }
+            });
+
+            $(".shopping-list").on("click", ".delete-item", function () {
+                $(this).closest("li").remove();
+            });
+
+
+
+        });
+
+    </script>
+</head>
+
+<body>
+    <header>
+        
+        <div class="main">
+            <h1>Shopping List</h1>
+            <div class="form-inline list">
+                <div class="data-add">
+                    <input type="text" id="txtTodo" class="form-control txtmain">
+                    <button id="btnAdd" class="btn btnMain">Add</button>
+                </div>
+                <ul class="shopping-list" id="lstShoppingList">
+                    <li class="shopping-item"><button class="unchecked"></button>Test<img class="btn delete-item" src="images/delete_small.png" /></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+</body>
+</html>
